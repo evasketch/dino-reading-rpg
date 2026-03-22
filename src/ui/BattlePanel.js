@@ -71,6 +71,21 @@ const ACTION_ICONS = {
   hide: '🫣', spin: '🌀', roll: '🎳', back: '👣',
 }
 
+const ACTION_PHONEMES = {
+  run:   ['r', 'u', 'n'],
+  jump:  ['j', 'u', 'mp'],
+  duck:  ['d', 'u', 'ck'],
+  dodge: ['d', 'o', 'dge'],
+  block: ['bl', 'o', 'ck'],
+  hop:   ['h', 'o', 'p'],
+  sit:   ['s', 'i', 't'],
+  nap:   ['n', 'a', 'p'],
+  hide:  ['h', 'i', 'de'],
+  spin:  ['sp', 'i', 'n'],
+  roll:  ['r', 'o', 'll'],
+  back:  ['b', 'a', 'ck'],
+}
+
 /**
  * Show the battle UI panel.
  * @param {object} opts
@@ -90,10 +105,10 @@ export function showBattle({ dino, entry, dinoHp, maxHp, playerHp, onChoice }) {
 
   const choicesHtml = shuffled.map(word => {
     const icon = ACTION_ICONS[word] ?? '❓'
-    // Choice buttons show plain uppercase text — phoneme highlighting is on the attack word only
+    const phonemes = ACTION_PHONEMES[word] ?? [word]
     return `<button class="bp-choice" data-word="${word}" data-correct="${word === entry.counter}">
       <span class="bp-icon">${icon}</span>
-      <span class="bp-word-small">${word.toUpperCase()}</span>
+      <span class="bp-word-small">${renderWord(phonemes)}</span>
     </button>`
   }).join('')
 
