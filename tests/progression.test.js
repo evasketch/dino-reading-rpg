@@ -32,9 +32,9 @@ describe('evaluateStage', () => {
     expect(evaluateStage(2, exchanges)).toBe(2)
   })
 
-  it('does not advance past stage 8', () => {
+  it('does not advance past stage 4', () => {
     const exchanges = Array(10).fill({ correct: true })
-    expect(evaluateStage(8, exchanges)).toBe(8)
+    expect(evaluateStage(4, exchanges)).toBe(4)
   })
 
   it('does not drop below stage 1', () => {

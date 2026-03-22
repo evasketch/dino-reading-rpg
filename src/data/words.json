@@ -16,7 +16,6 @@
   { "word": "grunt", "phonemes": ["gr","u","nt"],     "ufli_concept": 19, "stage": 3, "counter": "block", "distractors": ["run", "hop"] },
   { "word": "trip",  "phonemes": ["tr","i","p"],      "ufli_concept": 19, "stage": 3, "counter": "jump",  "distractors": ["duck", "block"] },
   { "word": "clunk", "phonemes": ["cl","u","nk"],     "ufli_concept": 19, "stage": 3, "counter": "dodge", "distractors": ["run", "jump"] },
-  { "word": "stomp", "phonemes": ["st","o","mp"],     "ufli_concept": 19, "stage": 3, "counter": "jump",  "distractors": ["block", "run"] },
   { "word": "chomp", "phonemes": ["ch","o","mp"],     "ufli_concept": 48, "stage": 4, "counter": "dodge", "distractors": ["run", "jump"] },
   { "word": "thud",  "phonemes": ["th","u","d"],      "ufli_concept": 46, "stage": 4, "counter": "jump",  "distractors": ["duck", "block"] },
   { "word": "whip",  "phonemes": ["wh","i","p"],      "ufli_concept": 50, "stage": 4, "counter": "duck",  "distractors": ["run", "block"] },

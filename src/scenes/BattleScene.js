@@ -90,7 +90,7 @@ export class BattleScene extends Phaser.Scene {
       this.cameras.main.shake(300, 0.01)
     }
 
-    setTimeout(() => this.nextAttack(), 800)
+    this.time.delayedCall(800, () => this.nextAttack())
   }
 
   winBattle() {
@@ -112,9 +112,9 @@ export class BattleScene extends Phaser.Scene {
       wordWrap: { width: 500 },
     }).setOrigin(0.5)
 
-    setTimeout(() => {
+    this.time.delayedCall(2500, () => {
       this.scene.stop()
       this.scene.resume('WorldScene', { befriended: this.dino.id })
-    }, 2500)
+    })
   }
 }

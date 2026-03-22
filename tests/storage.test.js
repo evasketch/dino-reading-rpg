@@ -11,7 +11,10 @@ global.localStorage = {
 
 import { getStage, setStage, getExchanges, addExchange, getBefriended, addBefriended, resetAll } from '../src/systems/storage.js'
 
-beforeEach(() => { resetAll() })
+beforeEach(() => {
+  Object.keys(store).forEach(k => delete store[k])
+  resetAll()
+})
 
 describe('getStage / setStage', () => {
   it('returns 1 by default', () => {

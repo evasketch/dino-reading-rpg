@@ -1,6 +1,6 @@
 // src/systems/progression.js
 const MIN_STAGE = 1
-const MAX_STAGE = 8
+const MAX_STAGE = 4
 const WINDOW_SIZE = 10
 const ADVANCE_THRESHOLD = 0.8
 const DROP_THRESHOLD = 0.5

@@ -91,7 +91,7 @@ export class WorldScene extends Phaser.Scene {
       }
 
       // Name label
-      const label = this.add.text(pos.x, pos.y - 35, dino.name, {
+      this.add.text(pos.x, pos.y - 35, dino.name, {
         fontFamily: 'OpenDyslexic, Comic Sans MS',
         fontSize: '12px',
         color: '#ffffff',

@@ -109,7 +109,8 @@ export function showDialog(dino, onBattleStart) {
           const msg = document.getElementById('dp-wrong-msg')
           msg.textContent = wrongText
           msg.style.display = 'block'
-          setTimeout(() => renderStep(), 1600)
+          const t = setTimeout(() => renderStep(), 1600)
+          panel._wrongTimer = t
         }
       })
     })

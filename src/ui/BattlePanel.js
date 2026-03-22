@@ -137,13 +137,15 @@ export function showBattle({ dino, entry, dinoHp, maxHp, playerHp, onChoice }) {
 
   const panel = mountPanel(html, PANEL_ID)
 
+  let choiceTimer = null
   panel.querySelectorAll('.bp-choice').forEach(btn => {
     btn.addEventListener('click', () => {
+      if (choiceTimer) return // prevent double-click
       const correct = btn.dataset.correct === 'true'
       btn.classList.add(correct ? 'correct' : 'wrong')
       // Disable all buttons
       panel.querySelectorAll('.bp-choice').forEach(b => b.style.pointerEvents = 'none')
-      setTimeout(() => onChoice(correct), 800)
+      choiceTimer = setTimeout(() => onChoice(correct), 800)
     })
   })
 }
