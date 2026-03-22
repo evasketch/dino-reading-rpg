@@ -17,6 +17,11 @@ export class WorldScene extends Phaser.Scene {
     super('WorldScene')
   }
 
+  init(data) {
+    // Restore player position after a battle (so they don't snap back to spawn)
+    this._returnPos = (data?.returnX != null) ? { x: data.returnX, y: data.returnY } : null
+  }
+
   create() {
     this.drawMap()
     this.createPlayer()
@@ -57,7 +62,9 @@ export class WorldScene extends Phaser.Scene {
   }
 
   createPlayer() {
-    this.player = this.physics.add.sprite(400, 520, 'player')
+    const spawnX = this._returnPos?.x ?? 400
+    const spawnY = this._returnPos?.y ?? 520
+    this.player = this.physics.add.sprite(spawnX, spawnY, 'player')
     this.player.setCollideWorldBounds(true)
 
     // Fallback if no sprite loaded: draw a colored rectangle
@@ -160,15 +167,28 @@ export class WorldScene extends Phaser.Scene {
     this.scene.pause()
     import('../ui/DialogPanel.js')
       .then(({ showDialog }) => {
-        showDialog(dinoData, () => this.startBattle(dinoData))
+        showDialog(
+          dinoData,
+          () => this.startBattle(dinoData),
+          () => {
+            // Player closed the dialog without battling — reset trigger so they can re-approach
+            if (this.npcs[dinoData.id]) {
+              this.npcs[dinoData.id].triggered = false
+            }
+            this.scene.resume()
+          }
+        )
       })
       .catch(err => {
         console.error('Failed to load DialogPanel:', err)
-        this.scene.resume() // unpause so game isn't stuck
+        this.scene.resume()
       })
   }
 
   startBattle(dinoData) {
+    // Save position so we can restore it after the battle
+    this._battleReturnX = this.player.x
+    this._battleReturnY = this.player.y
     this.scene.resume()
     this.scene.launch('BattleScene', { dino: dinoData })
     this.scene.pause()
@@ -185,7 +205,7 @@ export class WorldScene extends Phaser.Scene {
       return
     }
 
-    this.scene.restart()
+    this.scene.restart({ returnX: this._battleReturnX, returnY: this._battleReturnY })
   }
 
   showCollection() {

@@ -52,23 +52,38 @@ const styles = `
     padding-left: 64px; margin-top: 0.4rem;
     font-style: italic;
   }
+  #dialog-panel .dp-leave {
+    position: absolute; top: 0.6rem; right: 0.75rem;
+    background: none; border: none;
+    font-family: 'OpenDyslexic', 'Comic Sans MS', cursive;
+    font-size: 0.75rem; color: #aaa; cursor: pointer;
+    padding: 0.2rem 0.4rem;
+  }
+  #dialog-panel .dp-leave:hover { color: #795548; }
 `
 
 /**
  * Show the dialog sequence for a dino.
  * Calls onBattleStart() when the dialog reaches a battle trigger.
+ * Calls onClose() if the player dismisses the dialog without battling.
  *
  * @param {object} dino - dino data object from dinos.json
  * @param {function} onBattleStart
+ * @param {function} onClose
  */
-export function showDialog(dino, onBattleStart) {
+export function showDialog(dino, onBattleStart, onClose) {
   injectStyles()
   let stepIndex = 0
+
+  function close() {
+    removePanel(PANEL_ID)
+    onClose?.()
+  }
 
   function renderStep() {
     const step = dino.dialog[stepIndex]
     if (!step) {
-      removePanel(PANEL_ID)
+      close()
       return
     }
 
@@ -77,6 +92,7 @@ export function showDialog(dino, onBattleStart) {
     ).join('')
 
     const html = `
+      <button class="dp-leave" id="dp-leave-btn">← Leave</button>
       <div class="dp-speaker">
         <div class="dp-portrait">${dino.emoji}</div>
         <div>
@@ -89,6 +105,8 @@ export function showDialog(dino, onBattleStart) {
     `
 
     const panel = mountPanel(html, PANEL_ID)
+
+    document.getElementById('dp-leave-btn').addEventListener('click', close)
 
     panel.querySelectorAll('.dp-btn').forEach(btn => {
       btn.addEventListener('click', () => {
