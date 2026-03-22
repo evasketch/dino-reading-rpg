@@ -55,7 +55,7 @@ const styles = `
   #collection-panel .cp-back:hover { background: #795548; }
 `
 
-export function showCollection() {
+export function showCollection(onClose) {
   injectStyles()
   const befriended = getBefriended()
 
@@ -83,6 +83,7 @@ export function showCollection() {
   const panel = mountPanel(html, PANEL_ID)
   document.getElementById('cp-back-btn').addEventListener('click', () => {
     removePanel(PANEL_ID)
+    onClose?.()
   })
 }
 

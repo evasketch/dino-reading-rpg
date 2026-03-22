@@ -209,8 +209,14 @@ export class WorldScene extends Phaser.Scene {
   }
 
   showCollection() {
+    this.scene.pause()
     import('../ui/CollectionPanel.js')
-      .then(({ showCollection }) => showCollection())
-      .catch(err => console.error('Failed to load CollectionPanel:', err))
+      .then(({ showCollection }) => {
+        showCollection(() => this.scene.resume())
+      })
+      .catch(err => {
+        console.error('Failed to load CollectionPanel:', err)
+        this.scene.resume()
+      })
   }
 }
