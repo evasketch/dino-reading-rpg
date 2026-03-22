@@ -175,8 +175,16 @@ export class WorldScene extends Phaser.Scene {
   }
 
   refreshNPCs() {
-    // Re-read befriended state from localStorage and restart the scene.
-    // NPC triggered flags are reconstituted from localStorage in createDinoNPCs().
+    const befriended = getBefriended()
+    const allFriended = dinosData.every(d => befriended.includes(d.id))
+
+    if (allFriended) {
+      import('../ui/EndPanel.js')
+        .then(({ showEndScreen }) => showEndScreen(() => this.scene.restart()))
+        .catch(err => console.error('Failed to load EndPanel:', err))
+      return
+    }
+
     this.scene.restart()
   }
 
