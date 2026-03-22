@@ -1,0 +1,93 @@
+[
+  {
+    "id": "trex",
+    "name": "Chomper",
+    "species": "T-Rex",
+    "emoji": "🦖",
+    "color": "#e74c3c",
+    "dialog": [
+      {
+        "speaker": "Chomper",
+        "text": "Hey! You! Stop right there!",
+        "choices": [
+          { "text": "Why?", "correct": true },
+          { "text": "No way!", "wrong_text": "Chomper stomps. You stop too." }
+        ]
+      },
+      {
+        "speaker": "Chomper",
+        "text": "My rock is stuck. Help me!",
+        "choices": [
+          { "text": "I can help!", "correct": true },
+          { "text": "Not my rock.", "wrong_text": "Chomper growls. Please?" }
+        ]
+      },
+      {
+        "speaker": "Chomper",
+        "text": "I will test you first. Get set!",
+        "choices": [
+          { "text": "Let's go!", "correct": true, "leads_to_battle": true }
+        ]
+      }
+    ],
+    "battle_intro": "ROAARRR! Try to dodge this!",
+    "win_text": "You are... not bad. Fine. Be my pal.",
+    "fun_fact": "T-Rex had a bite as strong as a car crash!"
+  },
+  {
+    "id": "brachi",
+    "name": "Longneck",
+    "species": "Brachiosaurus",
+    "emoji": "🦕",
+    "color": "#27ae60",
+    "dialog": [
+      {
+        "speaker": "Longneck",
+        "text": "Oh! A kid! Can you help me?",
+        "choices": [
+          { "text": "Yes! What is it?", "correct": true },
+          { "text": "I am lost too.", "wrong_text": "Longneck blinks. Let us both try." }
+        ]
+      },
+      {
+        "speaker": "Longneck",
+        "text": "My egg got stuck in the mud.",
+        "choices": [
+          { "text": "I will get it!", "correct": true, "leads_to_battle": true },
+          { "text": "That is bad luck.", "wrong_text": "Longneck nods. Yes. Help?" }
+        ]
+      }
+    ],
+    "battle_intro": "Watch out! The mud is tough!",
+    "win_text": "You got my egg! You are the best!",
+    "fun_fact": "Brachiosaurus was as long as two big buses!"
+  },
+  {
+    "id": "ankylo",
+    "name": "Spiky",
+    "species": "Ankylosaurus",
+    "emoji": "🦎",
+    "color": "#8e44ad",
+    "dialog": [
+      {
+        "speaker": "Spiky",
+        "text": "Hmm. You look fast. Are you?",
+        "choices": [
+          { "text": "Try me!", "correct": true },
+          { "text": "Sort of.", "wrong_text": "Spiky tilts its head. Sort of. OK." }
+        ]
+      },
+      {
+        "speaker": "Spiky",
+        "text": "I need a race pal. Will you race?",
+        "choices": [
+          { "text": "Yes! I will race!", "correct": true, "leads_to_battle": true },
+          { "text": "I am not that fast.", "wrong_text": "Spiky grins. Yes you are. Come on!" }
+        ]
+      }
+    ],
+    "battle_intro": "Zoom! Dodge if you can!",
+    "win_text": "Ha! You are fast. Let us be pals!",
+    "fun_fact": "Ankylosaurus had a tail like a wrecking ball!"
+  }
+]
